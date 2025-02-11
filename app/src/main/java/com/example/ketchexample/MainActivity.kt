@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ContentMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("###", "onCreate")
         super.onCreate(savedInstanceState)
         binding = ContentMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         ketch.setRegion("US")
 
         ketch.load()
-       // ketch.showConsent(true)
+        ketch.showConsent(true) // Show consent dialog appears only after calling this.
     }
 
     private fun getKetchListener(): Ketch.Listener {
