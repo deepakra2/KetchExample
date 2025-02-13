@@ -41,14 +41,12 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             val advertisingId = getGaId()
-            Log.d("###","advertisingId - $advertisingId")
+            Log.d("###", "advertisingId - $advertisingId")
             if (!advertisingId.isNullOrEmpty()) {
                 ketch.setIdentities(mapOf("aaid" to advertisingId))
+                ketch.load()
             }
         }
-
-        ketch.load()
-        //ketch.showConsent(true) // Show consent dialog appears only after calling this.
     }
 
     private fun getKetchListener(): Ketch.Listener {
@@ -86,9 +84,6 @@ class MainActivity : AppCompatActivity() {
             override fun onUSPrivacyUpdated(values: Map<String, Any?>) {}
 
         }
-    }
-    fun fetchGaId() {
-
     }
 
     private suspend fun getGaId(): String? = withContext(Dispatchers.IO) {
